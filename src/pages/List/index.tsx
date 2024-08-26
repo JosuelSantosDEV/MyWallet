@@ -23,7 +23,7 @@ const List: React.FC = () => {
     const [data, setData] = useState<Idata[]>([]);
 
     const [monthSelected, setMonthSelected] = useState<string>(String(new Date().getMonth() + 1));
-    const [yearSelected, setYearSelected] = useState<string>(String(new Date().getFullYear()));
+    const [yearSelected, setYearSelected] = useState<string>("");
 
     const params = useParams();
     const {type} = params;
@@ -42,10 +42,29 @@ const List: React.FC = () => {
         {value: 7, label:"Julho"},{value: 8, label:"Agosto"},{value: 9, label:"Setembro"},{value: 10, label:"Outubro"},
         {value: 11, label:"Novembro"},{value: 12, label:"Dezembro"}
     ]
-    const years = [
-        {value: 2018, label: 2018},{value: 2019, label:2019}, {value: 2020, label:2020}, {value: 2021, label:2021},
-        {value: 2022, label:2022},{value: 2023, label:2023},{value: 2024, label:2024}
-    ]
+    // const years = [
+    //     {value: 2018, label: 2018},{value: 2019, label:2019}, {value: 2020, label:2020}, {value: 2021, label:2021},
+    //     {value: 2022, label:2022},{value: 2023, label:2023},{value: 2024, label:2024}
+    // ]
+
+    
+    const years = useMemo(()=>{
+        let uniqueYears: number[] = [];
+        listData.forEach(item => {
+            const date = new Date(item.date);
+            const year = date.getFullYear();
+            if(!uniqueYears.includes(year)){
+                uniqueYears.push(year);
+            }
+        });
+
+        return uniqueYears.map((year)=>{
+            return {value: year, label: year};
+        });
+
+    },[]);
+
+    if(yearSelected === "")setYearSelected(String(years[0].value));
 
     useEffect(()=>{
         const filteredData = listData.filter((item)=>{
@@ -69,7 +88,7 @@ const List: React.FC = () => {
             }
         })
         setData(formattedData);
-        //console.log(monthSelected + "/"+ yearSelected);
+        console.log(monthSelected + "/"+ yearSelected);
     },[monthSelected, yearSelected]);
 
     return <>
