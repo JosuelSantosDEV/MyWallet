@@ -5,10 +5,11 @@ import SelectInput from "../../components/SelectInput";
 import { gains } from "../../repositories/gains";
 import { expenses } from "../../repositories/expenses";
 import WalletBox from "../../components/WalletBox";
+import MessageBox from "../../components/MessageBox";
 
 const Dashboard: React.FC = () => {
     
-    const [monthSelected, setMonthSelected] = useState<number>();
+    const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1);
     const [yearSelected, setYearSelected] = useState<number>();
 
     
@@ -87,7 +88,19 @@ const Dashboard: React.FC = () => {
                     color="#E44C4E"
                     icon="arrowDown"
                 />
-            </Content>
+                <MessageBox
+                    title="Muito bem!!!"
+                    description="Seu saldo está positivo!"
+                    footerText="Continui assim, considere investir seu saldo!!!"
+                    icon="happy"
+                />
+                <MessageBox
+                    title="Muito bem!!!"
+                    description="Seu saldo está positivo!"
+                    footerText="Continui assim, considere investir seu saldo!!!"
+                    icon="sad"
+                />
+            </Content>  
         </Container>
     </>
 }
