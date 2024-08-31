@@ -7,6 +7,8 @@ import { expenses } from "../../repositories/expenses";
 import WalletBox from "../../components/WalletBox";
 import MessageBox from "../../components/MessageBox";
 
+import { IMessageBoxProps } from "../../components/MessageBox";
+
 const Dashboard: React.FC = () => {
     
     const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1);
@@ -57,6 +59,75 @@ const Dashboard: React.FC = () => {
         ]
     }, []);
 
+    const totalExpenses = useMemo(()=>{
+        let total: number = 0;
+        expenses.forEach((item)=>{
+            const date = new Date(item.date);
+
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+
+            if(month === monthSelected && year === yearSelected){
+                try {
+                    total+= Number(item.amount);
+                } catch {
+                    throw new Error("Erro ao converter amount para somara ao total - Dashboard/index");
+                }
+            }
+        })
+        return  total;
+    },[monthSelected, yearSelected])
+
+    const totalGains = useMemo(()=>{
+        let total: number = 0;
+        gains.forEach((item)=>{
+            const date = new Date(item.date);
+
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+
+            if(month === monthSelected && year === yearSelected){
+                try {
+                    total+= Number(item.amount);
+                } catch {
+                    throw new Error("Erro ao converter amount para somara ao total - Dashboard/index");
+                }
+            }
+        })
+        return  total;
+    },[monthSelected, yearSelected])
+
+    const totalBalance = useMemo(()=>{
+        return totalGains - totalExpenses;
+    }, [totalGains, totalExpenses])
+
+
+    const message = useMemo<IMessageBoxProps>(()=>{
+        if(totalBalance > 0){
+            return {
+                title: "Muito bem!!!",
+                description: "Sua carteira está positiva!",
+                footerText: "Parabens! continui assim, considere investir seu saldo!!!",
+                icon: "happy"
+            }
+        }else if(totalBalance == 0){
+            return {
+                title: "Ufaaa!!!",
+                description: "Foi por pouco!",
+                footerText: "Vc ficou por um fiu de ficar sem saldo!",
+                icon: "grinning"
+            }
+        } else {
+            return {
+                title: "Que pena!!!",
+                description: "Sua carteira está negativa!",
+                footerText: "Tente não gastar todo o seu saldo, pense bem andes de gastar qualquer centavo!",
+                icon: "sad"
+            }
+        }
+        
+    }, [totalBalance])
+
     return <> 
         <Container>
             <ContentHeader
@@ -69,37 +140,32 @@ const Dashboard: React.FC = () => {
             <Content>
                 <WalletBox
                     title="Saldo"
-                    amount={150.00}
+                    amount={totalBalance}
                     footerLabel="Atualizado com base nas entradas e saidas!"
                     color="#4E41F0"
                     icon="dollar"
                 />
                 <WalletBox
                     title="Entradas"
-                    amount={5000.00}
+                    amount={totalGains}
                     footerLabel="Atualizado com base nas entradas e saidas!"
                     color="#F7931B"
                     icon="arrowUp"
                 />
                 <WalletBox
                     title="Saidas"
-                    amount={4850.00}
+                    amount={totalExpenses}
                     footerLabel="Atualizado com base nas entradas e saidas!"
                     color="#E44C4E"
                     icon="arrowDown"
                 />
                 <MessageBox
-                    title="Muito bem!!!"
-                    description="Seu saldo está positivo!"
-                    footerText="Continui assim, considere investir seu saldo!!!"
-                    icon="happy"
+                    title={message.title}
+                    description={message.description}
+                    footerText={message.footerText}
+                    icon={message.icon}
                 />
-                <MessageBox
-                    title="Muito bem!!!"
-                    description="Seu saldo está positivo!"
-                    footerText="Continui assim, considere investir seu saldo!!!"
-                    icon="sad"
-                />
+                
             </Content>  
         </Container>
     </>

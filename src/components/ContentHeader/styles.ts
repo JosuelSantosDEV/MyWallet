@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface ITitleContainerProps{
-    linecolor: string;
+    color: string;
 }
 
 export const Container = styled.div`
@@ -18,7 +18,7 @@ export const TitleContainer = styled.div<ITitleContainerProps>`
             content: '';
             display: block;
             width: 55px;
-            border-bottom: 10px solid ${(props)=>props.linecolor};
+            border-bottom: 10px solid ${(props)=>props.color};
         }
     }
 `;
