@@ -8,6 +8,7 @@ import WalletBox from "../../components/WalletBox";
 import MessageBox from "../../components/MessageBox";
 
 import { IMessageBoxProps } from "../../components/MessageBox";
+import PieChart from "../../components/PieChart";
 
 const Dashboard: React.FC = () => {
     
@@ -165,6 +166,7 @@ const Dashboard: React.FC = () => {
                     footerText={message.footerText}
                     icon={message.icon}
                 />
+                <PieChart/>
                 
             </Content>  
         </Container>
