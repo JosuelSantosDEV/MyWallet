@@ -10,8 +10,7 @@ interface IselectInputProps {
     defaultValue?: string | number;
 };
 
-const SelectInput: React.FC<IselectInputProps>= ({options, onChange, defaultValue}) => {
-    return <> 
+const SelectInput: React.FC<IselectInputProps>= ({options, onChange, defaultValue}) => (
         <Container>
             <select onChange={onChange} defaultValue={defaultValue}>
                 {
@@ -22,7 +21,6 @@ const SelectInput: React.FC<IselectInputProps>= ({options, onChange, defaultValu
                 }
             </select>
         </Container>
-    </>
-}
+)
 
 export default SelectInput

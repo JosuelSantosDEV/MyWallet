@@ -19,8 +19,7 @@ function handleIconSelected(icon: "dollar" | "arrowUp" | "arrowDown"){
     if(icon === "arrowUp") return arrowUpImg;
     return arrowDownImg;
 }
-const WalletBox: React.FC<IWalletBoxProps>= ({title, amount, footerLabel, icon,color})=>{
-    return (
+const WalletBox: React.FC<IWalletBoxProps>= ({title, amount, footerLabel, icon,color})=>(
         <Container color={color}>
             <span>{title}</span>
             <h1>
@@ -36,7 +35,7 @@ const WalletBox: React.FC<IWalletBoxProps>= ({title, amount, footerLabel, icon,c
             <small>{footerLabel}</small>
             <img src={handleIconSelected(icon)} alt={title} />
         </Container>
-    )
-}
+)
+
 
 export default WalletBox;

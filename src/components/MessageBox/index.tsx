@@ -4,12 +4,13 @@ import { Container } from "./styles"
 import happyImg from "../../assets/happy.svg"
 import sadImg from "../../assets/sad.svg"
 import grinningImg from "../../assets/grinning.svg"
+import opsImg from "../../assets/Ops.png"
 
 export interface IMessageBoxProps{
     title: string;
     description: string;
     footerText: string;
-    icon: "happy" | "sad" | "grinning";
+    icon: "happy" | "sad" | "grinning"| "ops";
 }
 
 const MessageBox: React.FC<IMessageBoxProps> = ({title, description, footerText, icon})=>{
@@ -22,6 +23,8 @@ const MessageBox: React.FC<IMessageBoxProps> = ({title, description, footerText,
                 return sadImg;
             case "grinning":
                 return grinningImg;
+            case "ops":
+                return opsImg;
         }
     }
     
