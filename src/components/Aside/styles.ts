@@ -43,3 +43,23 @@ export const MenuItemLink = styled.a`
         font-size: 30px;
     }
 `;
+export const MenuItemButton = styled.button`
+    font-size: 20px;
+    color:  ${props => props.theme.colors.info};
+    
+    border: none;
+    background: none;
+    
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    transition: opacity .3s;
+    
+    &:hover {
+        opacity: .7;
+    }
+    > svg {
+        font-size: 30px;
+    }
+`;

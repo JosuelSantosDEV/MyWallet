@@ -1,21 +1,28 @@
-import { useState } from "react";
+
 import { Container, ToggleLabel, ToggleSelector } from "./styles"
 
-import Switch from 'react-switch'
 
-const Toggle: React.FC = ()=> {
-    const [check, setCheck] = useState(false); // State para controlar a troca de estados do Switch
+
+interface IToggleProps{
+    labelLeft: string;
+    labelRight: string;
+    checked: boolean;
+    onChange: () => void;
+};
+
+const Toggle: React.FC<IToggleProps> = ({labelLeft, labelRight, checked, onChange})=> {
+    
     return <>
         <Container>
-            <ToggleLabel>Light</ToggleLabel>
+            <ToggleLabel>{labelLeft}</ToggleLabel>
                 <ToggleSelector 
-                    checked={check}
-                    onChange={()=> setCheck(!check)}
+                    checked={checked}
+                    onChange={onChange}
                     uncheckedIcon={false}
                     checkedIcon={false}
 
                  />
-            <ToggleLabel>Dark</ToggleLabel>
+            <ToggleLabel>{labelRight}</ToggleLabel>
         </Container>
     </>
 }

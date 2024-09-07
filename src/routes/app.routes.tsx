@@ -9,11 +9,12 @@ import Layout from "../components/Layout";
 const AppRoutes: React.FC = () => (
     <Layout>
         <BrowserRouter>
-        <Routes>
-            <Route path="/dashboard"  element={<Dashboard/>}/>
-            <Route path="/list/:type" element={<List/>}/>
-        </Routes>
-    </BrowserRouter>
+            <Routes>
+                <Route path="/dashboard"  element={<Dashboard/>}/>
+                <Route path="/list/:type" element={<List/>}/>
+                <Route path="*" element={<Dashboard/>}/>
+            </Routes>
+        </BrowserRouter>
     </Layout>
     
 );
