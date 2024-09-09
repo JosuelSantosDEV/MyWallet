@@ -9,6 +9,10 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 25px;
+
+    @media (max-width: 320px) {
+        flex-direction: column;
+    }
     
 `;
 export const TitleContainer = styled.div<ITitleContainerProps>`
@@ -21,8 +25,24 @@ export const TitleContainer = styled.div<ITitleContainerProps>`
             border-bottom: 10px solid ${(props)=>props.color};
         }
     }
+
+    @media (max-width: 400px) {
+        > h1{
+            font-size: 22px;
+            &::after{
+                border-bottom: 5px solid ${(props)=>props.color};
+            }
+        }
+    }
 `;
 export const Controllers = styled.div`
     display: flex;
+
+    @media (max-width: 320px) {
+        margin-top: 20px;
+        width: 100%;
+
+        justify-content: space-around;
+    }
     
 `;

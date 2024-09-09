@@ -3,8 +3,9 @@ import React, { useMemo, useState } from "react"
 import {Container, Profile, Welcome, UserName}from './styles'
 
 import emojis from "../../utils/emojis" // Array de emojis
-import Toggle from "../Toggle"
+
 import { useTheme } from "../../hooks/theme"
+import Toggle from "../Toggle"
 
 const MainHeader: React.FC = ()=> {
 

@@ -296,7 +296,7 @@ const Dashboard: React.FC = () => {
             return {
                 title: "Muito bem!!!",
                 description: "Sua carteira está positiva!",
-                footerText: "Parabens! continui assim, considere investir seu saldo!!!",
+                footerText: "Parabens! continue assim, considere investir seu saldo!!!",
                 icon: "happy"
             }
         }else if(totalExpenses === 0 && totalGains === 0){
@@ -310,14 +310,14 @@ const Dashboard: React.FC = () => {
             return {
                 title: "Ufaaa!!!",
                 description: "Foi por pouco!",
-                footerText: "Vc ficou por um fiu de ficar sem saldo!",
+                footerText: "Vc ficou por um fíu, de sem saldo!",
                 icon: "grinning"
             }
         } else {
             return {
                 title: "Que pena!!!",
                 description: "Sua carteira está negativa!",
-                footerText: "Tente não gastar todo o seu saldo, pense bem andes de gastar qualquer centavo!",
+                footerText: "Tente não gastar todo o seu saldo, pense bem antes de gastar qualquer centavo!",
                 icon: "sad"
             }
         }
